@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calculadora de Cortinas Metálicas</title>
+  <style>
+    :root {
+      --primary: #0078d7;
+      --secondary: #00bfa5;
+      --bg: #f4f6f8;
+      --card-bg: #fff;
+      --text: #333;
+      --radius: 12px;
+      --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      font-size: 1.5rem;
+      font-weight: bold;
+      box-shadow: var(--shadow);
+    }
+
+    main {
+      flex: 1;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 1.5rem;
+      width: 100%;
+      max-width: 700px;
+    }
+
+    .card h2 {
+      text-align: center;
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 1rem;
+    }
+
+    label {
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    input {
+      padding: 0.6rem;
+      border-radius: var(--radius);
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+
+    button {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 0.8rem;
+      font-size: 1rem;
+      border-radius: var(--radius);
+      cursor: pointer;
+      width: 100%;
+      transition: 0.3s;
+      margin-top: 0.5rem;
+    }
+
+    button:hover {
+      background: var(--secondary);
+    }
+
+    .result {
+      margin-top: 1.5rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+      font-size: 0.95rem;
+    }
+
+    th,
+    td {
+      border-bottom: 1px solid #ddd;
+      text-align: left;
+      padding: 0.6rem;
+    }
+
+    th {
+      background-color: var(--primary);
+      color: white;
+    }
+
+    tr:hover {
+      background-color: #f1f1f1;
+    }
+
+    td input {
+      width: 60px;
+      text-align: center;
+      padding: 0.3rem;
+      border-radius: 6px;
+      border: 1px solid #bbb;
+    }
+
+    .peso {
+      background: var(--secondary);
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      border-radius: var(--radius);
+      margin-top: 1rem;
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: #222;
+      color: #aaa;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 600px) {
+      main {
+        padding: 1rem;
+      }
+
+      .card {
+        padding: 1rem;
+      }
+
+      th,
+      td {
+        font-size: 0.85rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>Calculadora de Cortinas Metálicas</header>
+  <main>
+    <div class="card">
+      <h2>Ingrese las Medidas</h2>
+      <div class="form-group">
+        <label for="ancho">Ancho (m):</label>
+        <input type="number" id="ancho" step="0.01" placeholder="Ej: 3.00" />
+      </div>
+      <div class="form-group">
+        <label for="alto">Alto (m):</label>
+        <input type="number" id="alto" step="0.01" placeholder="Ej: 2.50" />
+      </div>
+      <button onclick="calcular()">Calcular Materiales</button>
+
+      <div class="result" id="resultado"></div>
+    </div>
+  </main>
+
+  <footer>© 2025 - Sistema de cálculo de cortinas metálicas</footer>
+
+  <script>
+    function calcular() {
+      const ancho = parseFloat(document.getElementById('ancho').value);
+      const alto = parseFloat(document.getElementById('alto').value);
+      const resultado = document.getElementById('resultado');
+
+      if (isNaN(ancho) || isNaN(alto) || ancho <= 0 || alto <= 0) {
+        resultado.innerHTML = '<p style="color:red">⚠️ Ingrese medidas válidas.</p>';
+        return;
+      }
+
+      // Cálculos
+      const angular = (ancho * 2 - 0.04).toFixed(2);
+      const guias = (alto * 2 - 0.68).toFixed(2);
+      const muelles = (alto + 1).toFixed(2);
+      const duelas = (ancho * alto).toFixed(2);
+      const tubo = ancho.toFixed(2);
+      const peso = (ancho * alto * 21).toFixed(2);
+
+      const materiales = [
+        { nombre: "Tubo redondo", cantidad: 1, detalle: `${tubo} m` },
+
+        { nombre: "Angular 1 1/2 * 1/8", cantidad: 2, detalle: `${angular} m c/u` },
+        { nombre: "Guías 2*1*2*3/32", cantidad: 2, detalle: `${guias} m c/u` },
+        { nombre: "Muelles", cantidad: 1, detalle: `${muelles} m` },
+        { nombre: "Platos 34*34", cantidad: 2, detalle: "34x34 cm" },
+        { nombre: "Tambores", cantidad: 2, detalle: "unidad" },
+
+        { nombre: "Pernos cab, hexg. 3/8*3 eje", cantidad: 2, detalle: "2" },
+        { nombre: "Pernos cab, hexg. 3/8*1 machuelo", cantidad: 3, detalle: "piezas" },
+        { nombre: "Pernos cab, redon. 3/8*1 faldon", cantidad: 7, detalle: "piezas" },
+
+        { nombre: "perno spander", cantidad: 10, detalle: "piezas" },
+        { nombre: "arandelas", cantidad: 9, detalle: "piezas" },
+
+        { nombre: "Angular 1 *1/8 topes″", cantidad: 2, detalle: "4 cm c/u" },
+        { nombre: "Tubo cuadrado 1/2×1/2 baston", cantidad: 1, detalle: "1 m" },
+        { nombre: "Platina 1¼×3/16 enllavadores", cantidad: 1, detalle: "60cm" },
+        { nombre: "Platina 1×1/8 ganchos", cantidad: 1, detalle: "40 cm" },
+        { nombre: "Varilla lisa 1/4 ", cantidad: 1, detalle: "30 cm" },
+        { nombre: "Varilla corrugada 3/8 ", cantidad: 1, detalle: "15 cm" },
+        { nombre: "Haladera", cantidad: 1, detalle: "unidad" },
+        { nombre: "Duelas galvanizadas", cantidad: 1, detalle: `${duelas} m²` }
+      ];
+
+      let html = `
+        <h3>Resultado:</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Material</th>
+              <th>Cantidad (editable)</th>
+              <th>Detalle</th>
+            </tr>
+          </thead>
+          <tbody>
+      `;
+
+      materiales.forEach((m, index) => {
+        html += `
+          <tr>
+            <td>${m.nombre}</td>
+            <td><input type="number" min="0" value="${m.cantidad}" id="cant-${index}" onchange="actualizarCantidad(${index})"></td>
+            <td>${m.detalle}</td>
+          </tr>
+        `;
+      });
+
+      html += `
+          </tbody>
+        </table>
+        <div class="peso">
+          ⚙️ Peso total estimado de la cortina: <strong>${peso} kg</strong>
+        </div>
+        <p style="text-align:center;margin-top:1rem;font-weight:bold;color:var(--primary)">
+          ✅ Cálculo completado correctamente. Puede editar cantidades manualmente.
+        </p>
+      `;
+
+      resultado.innerHTML = html;
+      window.materiales = materiales; // guardar en memoria global para editar
+    }
+
+    // Función para actualizar cantidad en tiempo real
+    function actualizarCantidad(index) {
+      const nuevaCantidad = parseFloat(document.getElementById(`cant-${index}`).value);
+      if (!isNaN(nuevaCantidad) && nuevaCantidad >= 0) {
+        window.materiales[index].cantidad = nuevaCantidad;
+      }
+    }
+  </script>
+</body>
+
+</html>
