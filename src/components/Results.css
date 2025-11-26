@@ -1,0 +1,171 @@
+.results-container {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 2rem;
+  animation: fadeInUp 0.6s ease;
+}
+
+.results-title {
+  text-align: center;
+  color: var(--primary);
+  font-size: 1.75rem;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+}
+
+.measurements-info {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.measurement-item {
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+  padding: 1rem 1.5rem;
+  border-radius: var(--radius-sm);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  transition: var(--transition);
+}
+
+.measurement-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.measurement-item.peso {
+  background: linear-gradient(135deg, var(--secondary), var(--secondary-dark));
+  color: white;
+}
+
+.measurement-label {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.measurement-value {
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+
+.table-container {
+  overflow-x: auto;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  margin-bottom: 1.5rem;
+}
+
+.materials-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+}
+
+.materials-table thead {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: white;
+}
+
+.materials-table th {
+  padding: 1rem;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.materials-table tbody tr {
+  border-bottom: 1px solid var(--border);
+  transition: var(--transition);
+}
+
+.materials-table tbody tr:hover {
+  background: #f8f9fa;
+}
+
+.materials-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.materials-table td {
+  padding: 1rem;
+  font-size: 0.95rem;
+}
+
+.material-name {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.material-cantidad {
+  text-align: center;
+}
+
+.cantidad-input {
+  width: 80px;
+  padding: 0.5rem;
+  border: 2px solid var(--border);
+  border-radius: var(--radius-sm);
+  text-align: center;
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: var(--transition);
+}
+
+.cantidad-input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(0, 120, 215, 0.1);
+}
+
+.cantidad-input:hover {
+  border-color: var(--primary-dark);
+}
+
+.material-detalle {
+  color: var(--text-light);
+}
+
+.success-message {
+  background: linear-gradient(135deg, #d4edda, #c3e6cb);
+  color: #155724;
+  padding: 1rem 1.5rem;
+  border-radius: var(--radius-sm);
+  text-align: center;
+  font-weight: 600;
+  border-left: 4px solid #28a745;
+}
+
+@media (max-width: 768px) {
+  .results-container {
+    padding: 1.5rem;
+  }
+
+  .results-title {
+    font-size: 1.5rem;
+  }
+
+  .measurements-info {
+    grid-template-columns: 1fr;
+  }
+
+  .materials-table th,
+  .materials-table td {
+    padding: 0.75rem 0.5rem;
+    font-size: 0.875rem;
+  }
+
+  .material-name {
+    font-size: 0.85rem;
+  }
+
+  .cantidad-input {
+    width: 60px;
+    padding: 0.4rem;
+  }
+}

@@ -1,0 +1,111 @@
+.calculator-card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 2rem;
+  transition: var(--transition);
+  animation: fadeInUp 0.5s ease;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.calculator-card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+}
+
+.calculator-title {
+  text-align: center;
+  color: var(--primary);
+  font-size: 1.75rem;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+}
+
+.calculator-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-label {
+  font-weight: 600;
+  color: var(--text);
+  font-size: 1rem;
+}
+
+.form-input {
+  padding: 0.875rem 1rem;
+  border: 2px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 1rem;
+  transition: var(--transition);
+  background: white;
+  color: var(--text);
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(0, 120, 215, 0.1);
+}
+
+.form-input:hover {
+  border-color: var(--primary-dark);
+}
+
+.error-message {
+  background: #fee;
+  color: #c33;
+  padding: 0.875rem 1rem;
+  border-radius: var(--radius-sm);
+  border-left: 4px solid #c33;
+  font-weight: 500;
+}
+
+.calculate-button {
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: 0 4px 12px rgba(0, 120, 215, 0.3);
+}
+
+.calculate-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 120, 215, 0.4);
+}
+
+.calculate-button:active {
+  transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+  .calculator-card {
+    padding: 1.5rem;
+  }
+  
+  .calculator-title {
+    font-size: 1.5rem;
+  }
+}
